@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CRUD_Wich_Images.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<CRUD_Wich_ImagesContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CRUD_Wich_ImagesContext") ?? throw new InvalidOperationException("Connection string 'CRUD_Wich_ImagesContext' not found.")));
 
 var app = builder.Build();
 
